@@ -42,12 +42,14 @@ class Parallax extends React.Component {
       children,
       style,
       image,
-      small
+      small,
+      medium
     } = this.props;
     const parallaxClasses = classNames({
       [classes.parallax]: true,
       [classes.filter]: filter,
       [classes.small]: small,
+      [classes.medium]: medium,
       [className]: className !== undefined
     });
     return (
