@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+<script type="text/javascript" src="view.js"></script>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script language="JavaScript">
+
+    function showInput() {
+        document.getElementById('display').innerHTML = 
+        
+        "<div id=\"malwarereport\" class=\"malwarereport\">" +
+        "<br>Filename: " + document.getElementById("element_1").value + "</br>" +
+        "<br>Sha256: " + document.getElementById("element_2").value + "</br>" +
+        "<br><h3>Summary</h3></br><br>" + document.getElementById("element_3").value + "</br>" +
+        "<br><h3>General Characteristics</h3></br><br>" + document.getElementById("element_4").value + "</br>" +
+        "<br><h3>AntiVirus Detection Results</h3></br><br>" + document.getElementById("element_5").value + "</br>" +
+        "<br><h3>File System IOC</h3></br><br>" + document.getElementById("element_6").value + "</br>" +
+        "<br><h3>Network IOC</h3></br><br>" + document.getElementById("element_7").value + "</br>" +
+        "<br><h3>Registry IOC</h3></br><br>" + document.getElementById("element_8").value + "</br>" +
+        "<br><h3>Behavior & Control Flow</h3></br><br>" + document.getElementById("element_9").value + "</br>" +
+        "<br><h3>Appendix</h3></br><br>" + document.getElementById("element_10").value + "</br>" +
+        "<br><h3>End of Report</h3></br>";
+       
+        "</div>"
+    }
+  </script>
+  
+  
+<link rel="stylesheet" type="text/css" href="view.css" media="all">
+<link rel="stylesheet" href="https://securedorg.github.io//assets/css/style.css?v=5e63b4f7f8d5ec379a428172f4517e17cf6f662e">
+
+</head>
+<body>
+<div >
+	
+		<form id="form_21154" class="appnitro"  method="post" action="">
+					<div class="form_description">
+			<h2>Malware Analysis Report</h2>
+			<p>by @malwareunicorn</p>
+			<p>Insert information in this report as you analyze malware. It will generate a text output.</p>
+		</div>						
+			<ul >
+			
+					<li id="li_1" >
+		<label class="description" for="element_1">Filename </label>
+		<div>
+			<input id="element_1" name="element_1" class="element text medium" type="text" style="width: 500px;" maxlength="255" value=""/> 
+		</div><p class="guidelines" id="guide_1"><small>Original Filename</small></p> 
+		</li>		<li id="li_2" >
+		<label class="description" for="element_2">Sha256 Hash</label>
+		<div>
+			<input id="element_2" name="element_2" class="element text large" type="text" maxlength="255" value=""/> 
+		</div><p class="guidelines" id="guide_2"><small>Unique Identity</small></p> 
+		</li>		<li id="li_3" >
+		<label class="description" for="element_3">Summary</label>
+		<div>
+			<textarea id="element_3" name="element_3" class="element textarea medium"></textarea> 
+		</div> 
+		</li>		<li id="li_4" >
+		<label class="description" for="element_4">General Characteristics</label>
+		<div>
+			<textarea id="element_4" name="element_4" class="element textarea medium"></textarea> 
+		</div><p class="guidelines" id="guide_4"><small>File Format,
+Header Analysis,
+Basic PE information,
+Delivery Context</small></p> 
+		</li>		<li id="li_5" >
+		<label class="description" for="element_5">AntiVirus Detection Results</label>
+		<div>
+			<textarea id="element_5" name="element_5" class="element textarea medium"></textarea> 
+		</div><p class="guidelines" id="guide_5"><small>AV Results
+Yara Analysis Results
+Virustotal Results</small></p> 
+		</li>		<li id="li_6" >
+		<label class="description" for="element_6">File System IOC</label>
+		<div>
+			<textarea id="element_6" name="element_6" class="element textarea medium"></textarea> 
+		</div><p class="guidelines" id="guide_6"><small>Any changes on the file system made by the malware
+Created/Deleted/Modified Files</small></p> 
+		</li>		<li id="li_7" >
+		<label class="description" for="element_7">Network IOC</label>
+		<div>
+			<textarea id="element_7" name="element_7" class="element textarea medium"></textarea> 
+		</div><p class="guidelines" id="guide_7"><small>Network Related IOC
+GET/POST Requests
+Domains
+IP address</small></p> 
+		</li>		<li id="li_8" >
+		<label class="description" for="element_8">Registry IOC</label>
+		<div>
+			<textarea id="element_8" name="element_8" class="element textarea medium"></textarea> 
+		</div><p class="guidelines" id="guide_8"><small>Any changes in the Registry made by the malware</small></p> 
+		</li>		<li id="li_9" >
+		<label class="description" for="element_9">Behavior & Control Flow</label>
+		<div>
+			<textarea id="element_9" name="element_9" class="element textarea medium"></textarea> 
+		</div><p class="guidelines" id="guide_9"><small>List the order of events, processes, and capabilities.</small></p> 
+		</li>		<li id="li_10" >
+		<label class="description" for="element_10">Appendix</label>
+		<div>
+			<textarea id="element_10" name="element_10" class="element textarea medium"></textarea> 
+		</div><p class="guidelines" id="guide_10"><small>Add any strings, code, interest notes</small></p> 
+		
+			</ul>
+		</form>	
+		
+		
+	</div>
+
+  <p><input type="submit" onclick="showInput();"></p>
+  <p><label>Your Report: </label></p>
+  <hr>
+  <p><span id='display'></span></p>
+  
+  
+</script>
+
+</body>
+
+</html>
