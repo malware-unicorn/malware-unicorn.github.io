@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../pkg/codelab-elements.css">
+</head>
+<body>
+
+<script language="JavaScript" type="text/javascript">
+function loadXMLDoc(dname)
+{
+    if (window.XMLHttpRequest)
+    {
+        xhttp=new XMLHttpRequest();
+    }
+    else
+    {
+        xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.open("GET",dname,false);
+    xhttp.send();
+    return xhttp.responseXML;
+}
+function searchXML()
+{
+    xmlDoc=loadXMLDoc("x86.xml");
+    x=xmlDoc.getElementsByTagName("Instruction");
+    input = document.getElementById("input").value;
+    size = input.length;
+    if (input == null || input == "")
+    {
+        document.getElementById("results").innerHTML= "Please enter a character or name!";
+        return false;
+    }
+    for (i=0;i<x.length;i++)
+    {
+        Instruction = xmlDoc.getElementsByTagName("Instruction")[i].getAttribute("name");
+        startString = Instruction.substring(0,size);
+        if (startString.toLowerCase() == input.toLowerCase())
+        {
+            iname=x[i].getAttribute("name");
+            isummary=x[i].getAttribute("summary");
+            operandText = "<table><th>name</th><th>operands</th><th>opcode</th>";
+            ioperand=x[i].getElementsByTagName("InstructionForm");
+            for (y=0;y<ioperand.length;y++)
+            {
+               operandText += "<tr><td>" + ioperand[y].getAttribute("gas-name") + "</td>";
+               operand = ioperand[y].getElementsByTagName("Operand");
+               operandText += "<td>";
+               for (k=0;k<operand.length;k++)
+               {
+                  operandText += operand[k].getAttribute("type") + " ";
+               }
+               operandText += "</td><td>";
+               if (ioperand[y].getElementsByTagName("Encoding")[0].getElementsByTagName("Prefix").length != 0)
+               {
+                  operandText += ioperand[y].getElementsByTagName("Encoding")[0].getElementsByTagName("Prefix")[0].getAttribute("byte") + " ";
+               }
+               opcode = ioperand[y].getElementsByTagName("Encoding")[0].getElementsByTagName("Opcode");
+               for (m=0;m<opcode.length;m++)
+               {
+                  operandText += opcode[m].getAttribute("byte") + " ";
+               }
+               operandText += "</td></tr>";
+            }
+            operandText += "</table>"
+            divText = "<h1>The instruction details are:</h1><br /><table border=1><tr><th>Instruction</th><th>Summary</th><th>Variations</th></tr>" + "<tr><td>" + iname + "</td><td>" + isummary + "</td><td>" + operandText + "</td></tr>" + "</table>";
+            break;
+        }
+        else
+        {
+            divText = "<h2>The contact does not exist.</h2>";
+        }
+    }
+    document.getElementById("results").innerHTML= divText;
+}
+</script>
+
+Search Instruction: <input type="text" name="Instruction" id="input">
+<br />
+<input type="submit" value="Submit" onClick="searchXML()">
+<br />
+<br />
+<div id="results">
+</div>
+</body>
+
+</html>
